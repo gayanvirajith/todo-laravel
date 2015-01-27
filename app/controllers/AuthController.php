@@ -26,4 +26,13 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	public function expiry() {
+		
+		if (Auth::check()) {
+			return Response::make(array('message' => 'You are good to go!')); 
+		} else {
+			return Response::make(array('message' => 'Your session has been expired!'), 401);
+		}
+	}
+
 }

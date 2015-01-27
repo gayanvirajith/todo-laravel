@@ -13,8 +13,9 @@
 
 Route::get('/', array('uses' => 'HomeController@index', 'as' => 'home'));
 
-
 Route::get('logout', array('uses' => 'AuthController@logout', 'as' => 'logout'));
+
+Route::get('expiry', array('uses' => 'AuthController@expiry', 'as' => 'expiry'));
 
 // Post request
 Route::post('login', array('uses' => 'AuthController@login', 'as' => 'login'));
