@@ -31,9 +31,11 @@
   </head>
   <body>
 
-    <div class="container" ng-view="">
-    sadf
+
+    <div class="container">
+      <div class="alert alert-warning" ng-show="message">{{ message }}</div>
       <!-- Treats angular views here -->
+      <div ng-view=""></div>
     </div>
     <!-- process:template
     <script>

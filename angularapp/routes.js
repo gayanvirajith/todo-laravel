@@ -19,11 +19,14 @@ app.config(function($routeProvider){
     })
 });
 
-app.run(['$rootScope', '$location', 'AuthService', function($rootScope, $location, AuthService) {
+app.run(['$rootScope', '$location', 'AuthService', 'FlashService', 
+  function($rootScope, $location, AuthService, FlashService) {
+  
   var routesThatRequireAuth = ['/todos'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     if (_(routesThatRequireAuth).contains($location.path()) && !AuthService.isLoggedIn()) {
+      FlashService.show("Please log in to continue.");
       $location.path('/login');
     }
   });
