@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('TodoApp')
-  .controller('LoginCtrl', ['$scope', 'AuthService', function($scope, AuthService){
+  .controller('LoginCtrl', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService){
       $scope.title = 'Login'
       
       $scope.credential = {
@@ -10,6 +10,8 @@ angular.module('TodoApp')
       };
 
       $scope.login = function() {
-        AuthService.login($scope.credential);
+        AuthService.login($scope.credential).success(function(){
+          $location.path('/todos');
+        });
       }
   }]);

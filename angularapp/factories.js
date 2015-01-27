@@ -1,15 +1,49 @@
 'use strict';
 
-angular.module('TodoApp')
-  .factory('AuthService', ['$location', '$http', function($location, $http){
+app = angular.module('TodoApp');
+  
+  app.factory('AuthService', ['$location', '$http', 'SessionService', function($location, $http, SessionService){
+
+    var cacheSession = function() {
+      SessionService.set('authenticated', true);
+    };
+
+    var uncacheSession = function() {
+      SessionService.unset('authenticated', false);
+    };
+
     return {
       login: function(credential) {
-        $http.post('/login', credential);
-        $location.path('/todos');
+        var login = $http.post('/login', credential);
+        login.success(cacheSession);
+        return login;
       },
       logout: function() {
-        $http.get('/logout');
-        $location.path('/login');
+        var logout = $http.get('/logout');
+        logout.success(uncacheSession);
+        return logout;
+      },
+      isLoggedIn: function() {
+        return SessionService.get('authenticated');
       }
     };
+  }]);
+
+  app.factory('SessionService', ['$window', function($window) {
+
+    return {
+      get: function(key) {
+        // return $window.localStorage && $window.localStorage.getItem(key);
+        return $window.sessionStorage && $window.sessionStorage.getItem(key);
+      },
+      set: function(key, val) {
+        // return $window.localStorage && $window.localStorage.setItem(key, val);
+        return $window.sessionStorage && $window.sessionStorage.setItem(key, val);
+      },
+      unset: function(key) {
+        // return $window.localStorage && $window.localStorage.removeItem(key);
+        return $window.sessionStorage && $window.sessionStorage.removeItem(key);
+      }
+    };
+
   }]);

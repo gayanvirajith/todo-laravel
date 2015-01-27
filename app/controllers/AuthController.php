@@ -12,7 +12,7 @@ class AuthController extends \BaseController {
 		if (Auth::attempt($user)) {
 			return Response::make(array('message' => 'You are logged in!', 'user' => Auth::user()));
 		} else {
-			return Response::make(array('message' => 'Your username/password combination was incorrect!'), 401);
+			return Response::make(array('message' => 'Your username/password combination was incorrect!'), 500);
 		}
 
 	}
@@ -22,7 +22,7 @@ class AuthController extends \BaseController {
 			Auth::logout();
 			return Response::make(array('message' => 'You are now logged out!'));
 		} else {
-			return Response::make(array('message' => 'Please login!'),401);
+			return Response::make(array('message' => 'Please login!'),500);
 		}
 	}
 

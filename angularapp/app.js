@@ -6,13 +6,16 @@ var app = angular.module('TodoApp', [
   'ngRoute'
 ]);
 
-app.controller('AppCtrl', ['$scope', function ($scope) {
-  $scope.laravel = {
-    url   : 'http://laravel.com',
-    title : 'Laravel PHP Framework'
-  };
+app.run(['$rootScope', '$location', 'AuthService', function($rootScope, $location, AuthService) {
 
-  $scope.message = 'You have arrived.';
+  // var routesThatRequireAuth = ['/todos'];
+
+  // $rootScope.$on('$routeChangeStart', function(event, next, current) {
+  //   if (_(routesThatRequireAuth).contains($location.path()) && !AuthService.isLoggedIn()) {
+  //     $location.path('/login');
+  //   }
+  // });
+alert("Hello");
 
 }]);
 
