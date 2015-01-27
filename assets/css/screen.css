@@ -1,0 +1,12 @@
+.container {
+  width: 900px;
+}
+
+.login-form {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.ng-invalid.ng-dirty{
+  border-color: #FA787E;
+}
