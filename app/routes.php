@@ -17,5 +17,7 @@ Route::get('logout', array('uses' => 'AuthController@logout', 'as' => 'logout'))
 
 Route::get('expiry', array('uses' => 'AuthController@expiry', 'as' => 'expiry'));
 
+Route::get('todos', array('before' => 'auth', 'uses' => 'TodoController@index', 'as' => 'todos'));
+
 // Post request
 Route::post('login', array('uses' => 'AuthController@login', 'as' => 'login'));
