@@ -81,6 +81,13 @@ app.factory('TodoService', ['$http', function($http){
   return {
     get: function() {
       return $http.get('/todos');
-    } 
+    },
+    single: function(id) {
+      return $http.get('/todo/' + id);
+    },
+    edit: function(todo) {
+      var edit = $http.put('/todo/edit/'+todo.id, edit);
+      return edit;
+    }
   };
 }]);

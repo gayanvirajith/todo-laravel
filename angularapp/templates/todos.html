@@ -1,6 +1,7 @@
 <div class="common-panel">
   <div class="list-group-item" ng-repeat="todo in todos">
-    {{ todo.name }}
+    {{ todo.name }} 
+    <a ng-href="#/todo-edit/{{todo.id}}">Edit</a>
   </div>
   <br/>
   <a class="btn btn-primary" ng-click="logout()">Logout</a>

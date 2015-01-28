@@ -18,6 +18,10 @@ app.config(function($routeProvider){
         } 
       }
     })
+    .when('/todo-edit/:id', {
+      templateUrl: 'angularapp/templates/todo-item.html',
+      controller: 'TodoEditCtrl',
+    })
     .otherwise({
       templateUrl: 'angularapp/templates/login.html',
       controller: 'LoginCtrl'
@@ -27,7 +31,7 @@ app.config(function($routeProvider){
 app.run(['$rootScope', '$location', 'AuthService', 'FlashService', 
   function($rootScope, $location, AuthService, FlashService) {
   
-  var routesThatRequireAuth = ['/todo'];
+  var routesThatRequireAuth = ['/todo', '/todo-edit'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     if (_(routesThatRequireAuth).contains($location.path()) && !AuthService.isLoggedIn()) {

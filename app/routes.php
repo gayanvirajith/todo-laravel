@@ -19,5 +19,10 @@ Route::get('expiry', array('uses' => 'AuthController@expiry', 'as' => 'expiry'))
 
 Route::get('todos', array('before' => 'auth', 'uses' => 'TodoController@index', 'as' => 'todos'));
 
+Route::get('todo/{id}', array('uses' => 'TodoController@show', 'as' => 'show.todos'));
+
 // Post request
 Route::post('login', array('before' => 'csrf_json', 'uses' => 'AuthController@login', 'as' => 'login'));
+
+Route::post('todo/update/{id}', array('uses' => 'TodoController@update', 'as' => 'todoUpdate'));
+
