@@ -10,6 +10,11 @@ body {
   margin: 0 auto;
 }
 
+.common-panel {
+  width: 400px;
+  margin: 0 auto;
+}
+
 .ng-invalid.ng-dirty{
   border-color: #FA787E;
 }

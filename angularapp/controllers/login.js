@@ -4,7 +4,6 @@ angular.module('TodoApp')
   .controller('LoginCtrl', ['$scope', '$location', 'AuthService', 
     function($scope, $location, AuthService){
       $scope.title = 'Login'
-      
       $scope.credential = {
         username: '',
         password: ''

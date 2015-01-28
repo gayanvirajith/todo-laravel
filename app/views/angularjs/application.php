@@ -14,6 +14,7 @@
     <script src="/vendor/jquery/dist/jquery.js"></script>
     <script src="/vendor/angular/angular.js"></script>
     <script src="/vendor/angular-route/angular-route.min.js"></script>
+    <script src="/vendor/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="/vendor/underscore/underscore.js"></script>
     <script src="/vendor/angular-underscore-module/angular-underscore-module.js"></script>
     <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
@@ -28,6 +29,9 @@
     <script src="/angularapp/controllers/login.js"></script>
     <script src="/angularapp/controllers/todo.js"></script>
     <!-- endbuild -->
+    <script type="text/javascript">
+      angular.module('TodoApp').constant('CSRF_TOKEN', '<?php echo csrf_token(); ?>');
+    </script>
   </head>
   <body>
 

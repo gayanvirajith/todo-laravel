@@ -3,7 +3,8 @@
 var app = angular.module('TodoApp', [
   'underscore',
   'ui.bootstrap',
-  'ngRoute'
+  'ngRoute',
+  'ngSanitize'
 ]);
 
 

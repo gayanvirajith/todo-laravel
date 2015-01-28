@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('TodoApp', ['ngRoute']);
+var app = angular.module('TodoApp');
 
 app.config(function($routeProvider){
 
@@ -13,9 +13,9 @@ app.config(function($routeProvider){
       templateUrl: 'angularapp/templates/todos.html',
       controller: 'TodoCtrl',
       resolve: {
-        "expiry": function($http) {
-          return $http.get('/expiry');
-        }
+        todos: function(TodoService) {
+          return TodoService.get();
+        } 
       }
     })
     .otherwise({
@@ -27,7 +27,7 @@ app.config(function($routeProvider){
 app.run(['$rootScope', '$location', 'AuthService', 'FlashService', 
   function($rootScope, $location, AuthService, FlashService) {
   
-  var routesThatRequireAuth = ['/todos'];
+  var routesThatRequireAuth = ['/todo'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     if (_(routesThatRequireAuth).contains($location.path()) && !AuthService.isLoggedIn()) {

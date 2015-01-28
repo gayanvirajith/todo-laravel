@@ -1,9 +1,10 @@
 'use strict';
 
-app = angular.module('TodoApp');
+var app = angular.module('TodoApp');
   
 app.factory('AuthService', ['$location', '$http', 'SessionService', 
-  'FlashService', function($location, $http, SessionService, FlashService){
+  'FlashService', '$sanitize', 'CSRF_TOKEN', function($location, $http, SessionService, 
+    FlashService, $sanitize, CSRF_TOKEN){
 
   var cacheSession = function() {
     SessionService.set('authenticated', true);
@@ -17,9 +18,17 @@ app.factory('AuthService', ['$location', '$http', 'SessionService',
     FlashService.show(response.message);
   };
 
+  var sanitizeCredential = function(credential) {
+    return {
+      username: $sanitize(credential.username),
+      password: $sanitize(credential.password),
+      csrf_token: CSRF_TOKEN
+    };
+  };
+
   return {
     login: function(credential) {
-      var login = $http.post('/login', credential);
+      var login = $http.post('/login', sanitizeCredential(credential));
       login.success(cacheSession);
       login.success(showMessage);
       login.error(showMessage);
@@ -65,5 +74,13 @@ app.factory('FlashService', ['$rootScope', function($rootScope) {
     clear: function() {
       $rootScope.message = "";
     }
+  };
+}]);
+
+app.factory('TodoService', ['$http', function($http){
+  return {
+    get: function() {
+      return $http.get('/todos');
+    } 
   };
 }]);

@@ -1,1 +1,7 @@
-<a class="btn btn-primary" ng-click="logout()">Logout</a>
+<div class="common-panel">
+  <div class="list-group-item" ng-repeat="todo in todos">
+    {{ todo.name }}
+  </div>
+  <br/>
+  <a class="btn btn-primary" ng-click="logout()">Logout</a>
+</div>
